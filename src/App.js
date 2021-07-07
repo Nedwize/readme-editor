@@ -54,6 +54,7 @@ const App = () => {
                   wrapEnabled={true}
                   height={'100%'}
                   width={'100%'}
+                  onScroll={(e) => console.log(e)}
                 />
               </ScrollSyncPane>
             </Col>
