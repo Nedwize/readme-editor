@@ -1,79 +1,73 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import AceEditor from 'react-ace';
 
-import Form from "react-bootstrap/Form";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
-import ListGroup from "react-bootstrap/ListGroup";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import ReactMarkdown from "react-markdown";
-import FillerText from "./data/filler";
-import { ScrollSync, ScrollSyncPane } from "react-scroll-sync";
+import 'ace-builds/src-noconflict/mode-markdown';
+import 'ace-builds/src-noconflict/theme-github';
 
-import "./App.css";
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import ReactMarkdown from 'react-markdown';
+import FillerText from './data/filler';
+import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
+
+import CodeBlock from './CodeBlock';
+
+import './App.css';
 
 const App = () => {
   const [input, setInput] = useState(FillerText);
 
   return (
-    <Container fluid style={{ minHeight: "100vh" }}>
+    <Container fluid style={{ minHeight: '100vh' }}>
       <Row>
-        <Col xs={12} style={{ padding: "0" }}>
+        <Col xs={12} style={{ padding: '0' }}>
           <Navbar expand="lg" variant="dark" bg="primary">
             <Navbar.Brand href="#">Joplin WEB</Navbar.Brand>
           </Navbar>
         </Col>
       </Row>
-      <Row>
-        <Col
-          xs={2}
-          style={{
-            backgroundColor: "#24292e",
-            minHeight: "calc(100vh - 56px)",
-          }}
-        >
-          <ListGroup style={{ marginTop: "20px" }}>
-            <ListGroup.Item>
-              <strong>NoteBook 1</strong>
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
+      <Row style={{ margin: '2rem 5rem' }}>
         <ScrollSync>
           <React.Fragment>
-            <Col xs={5} style={{ backgroundColor: "red", padding: "0" }}>
-              <Form>
-                <Form.Group
-                  controlId="exampleForm.ControlTextarea1"
-                  style={{ margin: "0" }}
-                >
-                  <ScrollSyncPane>
-                    <Form.Control
-                      as="textarea"
-                      style={{
-                        height: "calc(100vh - 56px)",
-                        border: "none",
-                        borderRadius: "0",
-                        resize: "none",
-                        overflow: "auto",
-                      }}
-                      onChange={(e) => setInput(e.target.value)}
-                      value={input}
-                    />
-                  </ScrollSyncPane>
-                </Form.Group>
-              </Form>
+            <Col
+              xs={6}
+              style={{
+                backgroundColor: 'red',
+                padding: '0',
+                minHeight: '500px',
+              }}
+            >
+              <ScrollSyncPane>
+                <AceEditor
+                  placeholder="Placeholder Text"
+                  mode="markdown"
+                  theme="github"
+                  name="blah2"
+                  onChange={(e) => setInput(e)}
+                  fontSize={14}
+                  showPrintMargin={true}
+                  showGutter={true}
+                  highlightActiveLine={true}
+                  value={input}
+                  wrapEnabled={true}
+                  height={'100%'}
+                  width={'100%'}
+                />
+              </ScrollSyncPane>
             </Col>
             <ScrollSyncPane>
               <Col
-                xs={5}
+                xs={6}
                 style={{
-                  backgroundColor: "white",
-                  borderLeft: "1px solid rgb(206, 206, 206)",
-                  maxHeight: "calc(100vh - 56px)",
-                  overflow: "auto",
+                  backgroundColor: 'white',
+                  borderLeft: '1px solid rgb(206, 206, 206)',
+                  maxHeight: 'calc(100vh - 56px)',
+                  overflow: 'auto',
                 }}
               >
-                <ReactMarkdown source={input} />
+                <ReactMarkdown source={input} renderers={{ code: CodeBlock }} />
               </Col>
             </ScrollSyncPane>
           </React.Fragment>

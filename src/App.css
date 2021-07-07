@@ -3,7 +3,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
 
 /* Track */
@@ -18,7 +18,7 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgb(206, 206, 206);
-  border-radius: 5px;
+  border-radius: 0px;
 }
 
 /* Handle on hover */
