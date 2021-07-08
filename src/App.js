@@ -22,7 +22,7 @@ import ModalComponent from './components/Modal';
 
 const App = () => {
   const [input, setInput] = useState(FillerText);
-  const [bgColor, setBgColor] = useState('#272822');
+  const [bgColor, setBgColor] = useState('white');
   const [showToast, setShowToast] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const outputScroll = useRef(null);
@@ -98,10 +98,16 @@ const App = () => {
             <Navbar.Brand href="#">
               <strong>ReadMe Editor 🗒️</strong>
             </Navbar.Brand>
-            <Nav className="ml-auto d-flex" variant="dark">
+            <Nav
+              className="ml-auto"
+              style={{
+                display: 'flex !important',
+                flexDirection: 'row',
+              }}
+              variant="dark"
+            >
               <Button
                 onClick={openModal}
-                style={{ marginRight: '1rem' }}
                 variant={isDark() ? 'secondary' : 'primary'}
               >
                 Get from GitHub
@@ -132,11 +138,11 @@ const App = () => {
             style={{
               backgroundColor: 'red',
               padding: '0',
-              minHeight: '500px',
+              minHeight: 'calc(100vh - 112px)',
             }}
           >
             <AceEditor
-              placeholder="Placeholder Text"
+              placeholder="Start with your notes"
               mode="markdown"
               theme={isDark() ? 'monokai' : 'github'}
               name="blah2"
