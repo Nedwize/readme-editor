@@ -17,8 +17,9 @@ import FillerText from './data/filler';
 import CodeBlock from './CodeBlock';
 
 import './App.css';
-import { Button, Nav, Toast } from 'react-bootstrap';
+import { Button, Nav } from 'react-bootstrap';
 import ModalComponent from './components/Modal';
+import ToastComponent from './components/Toast';
 
 const App = () => {
   const [input, setInput] = useState(FillerText);
@@ -175,21 +176,12 @@ const App = () => {
           </Col>
         </React.Fragment>
       </Row>
-      <Toast
-        className={isDark() ? 'bg-secondary' : 'bg-primary'}
-        style={{
-          position: 'absolute',
-          top: '4rem',
-          right: '1rem',
-          color: 'white',
-        }}
-        onClose={() => setShowToast(false)}
+      <ToastComponent
         show={showToast}
-        delay={2000}
-        autohide
-      >
-        <Toast.Body>Copied to Clipboard</Toast.Body>
-      </Toast>
+        handleClose={() => setShowToast(false)}
+        isDark={isDark}
+        message={'Copied to Clipboard!'}
+      />
       <ModalComponent
         show={showModal}
         handleClose={() => setShowModal(false)}
