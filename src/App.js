@@ -17,11 +17,12 @@ import FillerText from './data/filler';
 import CodeBlock from './CodeBlock';
 
 import './App.css';
-import { Button, Nav } from 'react-bootstrap';
+import { Button, Nav, Toast } from 'react-bootstrap';
 
 const App = () => {
   const [input, setInput] = useState(FillerText);
   const [bgColor, setBgColor] = useState('#272822');
+  const [showToast, setShowToast] = useState(false);
   const outputScroll = useRef(null);
   const editorScroll = useRef(null);
 
@@ -75,7 +76,7 @@ const App = () => {
 
   const copyToClipboard = () => {
     copy(input);
-    alert('Copied to Clipboard');
+    setShowToast(true);
   };
 
   return (
@@ -154,6 +155,21 @@ const App = () => {
           </Col>
         </React.Fragment>
       </Row>
+      <Toast
+        className={isDark() ? 'bg-secondary' : 'bg-primary'}
+        style={{
+          position: 'absolute',
+          top: '4rem',
+          right: '1rem',
+          color: 'white',
+        }}
+        onClose={() => setShowToast(false)}
+        show={showToast}
+        delay={2000}
+        autohide
+      >
+        <Toast.Body>Copied to Clipboard</Toast.Body>
+      </Toast>
     </Container>
   );
 };
