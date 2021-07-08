@@ -21,6 +21,8 @@ const App = () => {
   const outputScroll = useRef(null);
   const editorScroll = useRef(null);
 
+  // Returns the max scroll height of the Editor
+  // Used in calculating the ratio for sync scroll
   const getMaxEditorHeight = () => {
     let editor = editorScroll.current.editor;
     return (
@@ -30,24 +32,36 @@ const App = () => {
     );
   };
 
+  // Returns the max scroll height of the OUTPUT
+  // Used in calculating the ratio for sync scroll
   const getMaxOutputHeight = () => {
     return (
       outputScroll.current.scrollHeight - outputScroll.current.clientHeight
     );
   };
 
+  // Function fired when Editor is scrolled
+  // Calculates the ratio of the Editor's Scroll Position
+  // and sets the scroll position of the output respectively
   const handleEditorScroll = (e) => {
     let outputScrollToSet =
       (editorScroll.current.editor.getSession().getScrollTop() /
         getMaxEditorHeight()) *
       getMaxOutputHeight();
+
+    // Algorithm - (Editor Scroll Position / Editor Max Height = Output Scroll Position / Output Max Height)
     outputScroll.current.scrollTop = outputScrollToSet;
   };
 
+  // Function fired when Output is scrolled
+  // Calculates the ratio of the Output's Scroll Position
+  // and sets the scroll position of the editor respectively
   const handleOutputScroll = (e) => {
     let editorScrollToSet =
       (outputScroll.current.scrollTop / getMaxOutputHeight()) *
       getMaxEditorHeight();
+
+    // Algorithm - (Editor Scroll Position / Editor Max Height = Output Scroll Position / Output Max Height)
     editorScroll.current.editor.getSession().setScrollTop(editorScrollToSet);
   };
 
