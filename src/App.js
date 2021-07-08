@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import AceEditor from 'react-ace';
 
 import 'ace-builds/src-noconflict/mode-markdown';
@@ -18,9 +18,41 @@ import './App.css';
 
 const App = () => {
   const [input, setInput] = useState(FillerText);
+  const outputScroll = useRef(null);
+  const editorScroll = useRef(null);
+
+  const getMaxEditorHeight = () => {
+    let editor = editorScroll.current.editor;
+    return (
+      editor.renderer.layerConfig.maxHeight -
+      editor.renderer.$size.scrollerHeight +
+      editor.renderer.scrollMargin.bottom
+    );
+  };
+
+  const getMaxOutputHeight = () => {
+    return (
+      outputScroll.current.scrollHeight - outputScroll.current.clientHeight
+    );
+  };
+
+  const handleEditorScroll = (e) => {
+    let outputScrollToSet =
+      (editorScroll.current.editor.getSession().getScrollTop() /
+        getMaxEditorHeight()) *
+      getMaxOutputHeight();
+    outputScroll.current.scrollTop = outputScrollToSet;
+  };
+
+  const handleOutputScroll = (e) => {
+    let editorScrollToSet =
+      (outputScroll.current.scrollTop / getMaxOutputHeight()) *
+      getMaxEditorHeight();
+    editorScroll.current.editor.getSession().setScrollTop(editorScrollToSet);
+  };
 
   return (
-    <Container fluid style={{ minHeight: '100vh' }}>
+    <Container fluid style={{ maxHeight: '100vh' }}>
       <Row>
         <Col xs={12} style={{ padding: '0' }}>
           <Navbar expand="lg" variant="dark" bg="primary">
@@ -54,7 +86,8 @@ const App = () => {
                   wrapEnabled={true}
                   height={'100%'}
                   width={'100%'}
-                  onScroll={(e) => console.log(e)}
+                  onScroll={handleEditorScroll}
+                  ref={editorScroll}
                 />
               </ScrollSyncPane>
             </Col>
@@ -67,6 +100,8 @@ const App = () => {
                   maxHeight: 'calc(100vh - 56px)',
                   overflow: 'auto',
                 }}
+                ref={outputScroll}
+                onScroll={handleOutputScroll}
               >
                 <ReactMarkdown source={input} renderers={{ code: CodeBlock }} />
               </Col>
