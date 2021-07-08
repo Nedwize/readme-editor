@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/NakshatraCodes/readme-editor/issues"
   },
-  "homepage": "https://github.com/NakshatraCodes/readme-editor#readme"
+  "homepage": "https://github.com/NakshatraCodes/readme-editor#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
 }
