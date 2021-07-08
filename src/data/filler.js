@@ -1,10 +1,6 @@
-const text = `# Welcome to Joplin! 🗒️
+const text = `# Welcome to ReadMeEditor!🗒️
 
-Joplin is a free, open source note taking and to-do application, which helps you write and organise your notes, and synchronise them between your devices. The notes are searchable, can be copied, tagged and modified either from the applications directly or from your own text editor. The notes are in [Markdown format](https://joplinapp.org/#markdown). Joplin is available as a **💻 desktop**, **📱 mobile** and **🔡 terminal** application.
-
-The notes in this notebook give an overview of what Joplin can do and how to use it. In general, the three applications share roughly the same functionalities; any differences will be clearly indicated.
-
-![](:/4497db83fd494b1c8a4dd9adff1248ff)
+ReadMeEditor is a free, open source note taking application, which helps you write and visualize your notes in real time. ReadMeEditor comes with an in-built **Code Editor** so you can seamlessly write your notes in [Markdown format](https://joplinapp.org/#markdown). ReadMeEditor is available as a **💻 desktop** application and also comes with 🌓 Dark Mode.
 
 ## Joplin is divided into three parts
 
