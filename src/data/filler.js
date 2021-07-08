@@ -1,6 +1,6 @@
 const text = `# Welcome to ReadMeEditor!🗒️
 
-ReadMeEditor is a free, open source note taking application, which helps you write and visualize your notes in real time. ReadMeEditor comes with an in-built **Code Editor** so you can seamlessly write your notes in [Markdown format](https://joplinapp.org/#markdown). ReadMeEditor is available as a **💻 desktop** application and also comes with 🌓 Dark Mode.
+**ReadMeEditor** is a free, open source note taking application, which helps you write and visualize your notes in real time. ReadMeEditor comes with an in-built **Code Editor** so you can seamlessly write your notes in [Markdown format](https://joplinapp.org/#markdown). ReadMeEditor is available as a **💻 desktop** application and also comes with 🌓 Dark Mode.
 
 ## Joplin is divided into three parts
 
