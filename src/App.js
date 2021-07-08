@@ -5,6 +5,8 @@ import 'ace-builds/src-noconflict/mode-markdown';
 import 'ace-builds/src-noconflict/theme-github';
 import 'ace-builds/src-noconflict/theme-monokai';
 
+import copy from 'copy-to-clipboard';
+
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -71,6 +73,11 @@ const App = () => {
     return bgColor === '#272822';
   };
 
+  const copyToClipboard = () => {
+    copy(input);
+    alert('Copied to Clipboard');
+  };
+
   return (
     <Container fluid style={{ maxHeight: '100%', backgroundColor: bgColor }}>
       <Row>
@@ -79,11 +86,18 @@ const App = () => {
             expand="lg"
             variant="dark"
             bg={isDark() ? 'secondary' : 'primary'}
+            className={'shadow'}
           >
             <Navbar.Brand href="#">
               <strong>ReadMe Editor 🗒️</strong>
             </Navbar.Brand>
-            <Nav className="ml-auto">
+            <Nav className="ml-auto" variant="dark">
+              <Button
+                onClick={copyToClipboard}
+                variant={isDark() ? 'secondary' : 'primary'}
+              >
+                Copy To Clipboard
+              </Button>
               <Button
                 onClick={() => {
                   isDark() ? setBgColor('white') : setBgColor('#272822');
