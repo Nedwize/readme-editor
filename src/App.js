@@ -67,23 +67,30 @@ const App = () => {
     editorScroll.current.editor.getSession().setScrollTop(editorScrollToSet);
   };
 
+  const isDark = () => {
+    return bgColor === '#272822';
+  };
+
   return (
     <Container fluid style={{ maxHeight: '100%', backgroundColor: bgColor }}>
       <Row>
         <Col xs={12} style={{ padding: '0' }}>
-          <Navbar expand="lg" variant="dark" bg="primary">
+          <Navbar
+            expand="lg"
+            variant="dark"
+            bg={isDark() ? 'secondary' : 'primary'}
+          >
             <Navbar.Brand href="#">
               <strong>ReadMe Editor 🗒️</strong>
             </Navbar.Brand>
             <Nav className="ml-auto">
               <Button
                 onClick={() => {
-                  bgColor === '#272822'
-                    ? setBgColor('white')
-                    : setBgColor('#272822');
+                  isDark() ? setBgColor('white') : setBgColor('#272822');
                 }}
+                variant={isDark() ? 'secondary' : 'primary'}
               >
-                {bgColor === '#272822' ? '☀' : '🌙'}
+                {isDark() ? '☀' : '🌙'}
               </Button>
             </Nav>
           </Navbar>
@@ -102,7 +109,7 @@ const App = () => {
             <AceEditor
               placeholder="Placeholder Text"
               mode="markdown"
-              theme={bgColor === '#272822' ? 'monokai' : 'github'}
+              theme={isDark() ? 'monokai' : 'github'}
               name="blah2"
               onChange={(e) => setInput(e)}
               fontSize={16}
@@ -124,7 +131,7 @@ const App = () => {
               borderLeft: '1px solid rgb(206, 206, 206)',
               maxHeight: 'calc(100vh - 112px)',
               overflow: 'auto',
-              color: bgColor === '#272822' ? 'white' : 'black',
+              color: isDark() ? 'white' : 'black',
             }}
             ref={outputScroll}
             onScroll={handleOutputScroll}
