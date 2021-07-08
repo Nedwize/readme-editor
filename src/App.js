@@ -18,11 +18,13 @@ import CodeBlock from './CodeBlock';
 
 import './App.css';
 import { Button, Nav, Toast } from 'react-bootstrap';
+import ModalComponent from './components/Modal';
 
 const App = () => {
   const [input, setInput] = useState(FillerText);
   const [bgColor, setBgColor] = useState('#272822');
   const [showToast, setShowToast] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const outputScroll = useRef(null);
   const editorScroll = useRef(null);
 
@@ -79,6 +81,10 @@ const App = () => {
     setShowToast(true);
   };
 
+  const openModal = () => {
+    setShowModal(true);
+  };
+
   return (
     <Container fluid style={{ maxHeight: '100%', backgroundColor: bgColor }}>
       <Row>
@@ -92,9 +98,17 @@ const App = () => {
             <Navbar.Brand href="#">
               <strong>ReadMe Editor 🗒️</strong>
             </Navbar.Brand>
-            <Nav className="ml-auto" variant="dark">
+            <Nav className="ml-auto d-flex" variant="dark">
+              <Button
+                onClick={openModal}
+                style={{ marginRight: '1rem' }}
+                variant={isDark() ? 'secondary' : 'primary'}
+              >
+                Get from GitHub
+              </Button>
               <Button
                 onClick={copyToClipboard}
+                style={{ marginRight: '1rem' }}
                 variant={isDark() ? 'secondary' : 'primary'}
               >
                 Copy To Clipboard
@@ -170,6 +184,10 @@ const App = () => {
       >
         <Toast.Body>Copied to Clipboard</Toast.Body>
       </Toast>
+      <ModalComponent
+        show={showModal}
+        handleClose={() => setShowModal(false)}
+      />
     </Container>
   );
 };
