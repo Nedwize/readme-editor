@@ -45,3 +45,29 @@
   background-color: rgb(216, 216, 216) !important;
   border: none !important;
 }
+
+.modal-content {
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.modal-header {
+  border: none;
+}
+
+.modal-footer {
+  border: none;
+}
+
+.form-label {
+  color: gray;
+  font-weight: 500;
+}
+
+.form-control {
+  border-radius: 0.5rem;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
