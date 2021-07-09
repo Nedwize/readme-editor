@@ -12,13 +12,6 @@ app.use(cors());
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.json({
-    success: true,
-    message: 'OK',
-  });
-});
-
 app.post('/readme', async (req, res) => {
   let { username, repository, branch } = req.body;
   if (!username || !repository) {
