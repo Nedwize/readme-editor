@@ -1,11 +1,14 @@
 const express = require('express');
 const axios = require('axios');
+var cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
 const getURL = (username, repo, branch = 'master') => {
   return `https://raw.githubusercontent.com/${username}/${repo}/${branch}/README.md`;
 };
+
+app.use(cors());
 
 app.use(express.json());
 

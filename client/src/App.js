@@ -6,26 +6,23 @@ import 'ace-builds/src-noconflict/theme-github';
 import 'ace-builds/src-noconflict/theme-monokai';
 
 import copy from 'copy-to-clipboard';
-
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import ReactMarkdown from 'react-markdown';
 import FillerText from './data/filler';
 
 import CodeBlock from './CodeBlock';
 
 import './App.css';
-import { Button, Nav } from 'react-bootstrap';
+import { Button, Nav, Container, Row, Col, Navbar } from 'react-bootstrap';
 import ModalComponent from './components/Modal';
 import ToastComponent from './components/Toast';
+import { postAPI } from './api';
 
 const App = () => {
   const [input, setInput] = useState(FillerText);
   const [bgColor, setBgColor] = useState('white');
   const [showToast, setShowToast] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
   const outputScroll = useRef(null);
   const editorScroll = useRef(null);
 
@@ -84,6 +81,12 @@ const App = () => {
 
   const openModal = () => {
     setShowModal(true);
+  };
+
+  const handleFormSubmit = (values) => {
+    postAPI(values).then((res) => {
+      console.log(res.data);
+    });
   };
 
   return (
@@ -185,6 +188,7 @@ const App = () => {
       <ModalComponent
         show={showModal}
         handleClose={() => setShowModal(false)}
+        onFormSubmit={handleFormSubmit}
       />
     </Container>
   );
