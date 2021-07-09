@@ -53,6 +53,9 @@ A lot more is possible including adding code samples, math formulae or checkbox 
 Made with ❤ by [NakshatraCodes](https://nakshatrasaxena.me)
 
 [Buy me a coffee](https://www.buymeacoffee.com/nakshatrasaxena)
+
+See a bug? - [File an issue](https://github.com/NakshatraCodes/readme-editor/issues)
+Open to contributions - [GitHub](https://github.com/NakshatraCodes/readme-editor) 
 `;
 
 export const readme = `# Project Title
