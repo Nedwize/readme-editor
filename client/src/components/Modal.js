@@ -27,7 +27,7 @@ const ModalComponent = ({ show, handleClose, onFormSubmit }) => {
           </Form.Group>
           <Row>
             <Col>
-              <Form.Group controlId="formGroupPassword">
+              <Form.Group>
                 <Form.Label>Repository</Form.Label>
                 <Form.Control
                   type="text"
@@ -39,7 +39,7 @@ const ModalComponent = ({ show, handleClose, onFormSubmit }) => {
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group controlId="formGroupPassword">
+              <Form.Group>
                 <Form.Label>Branch (default master)</Form.Label>
                 <Form.Control
                   type="text"

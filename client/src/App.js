@@ -7,7 +7,7 @@ import 'ace-builds/src-noconflict/theme-monokai';
 
 import copy from 'copy-to-clipboard';
 import ReactMarkdown from 'react-markdown';
-import FillerText from './data/filler';
+import { text, readme } from './data/filler';
 
 import CodeBlock from './CodeBlock';
 
@@ -18,7 +18,7 @@ import ToastComponent from './components/Toast';
 import { postAPI } from './api';
 
 const App = () => {
-  const [input, setInput] = useState(FillerText);
+  const [input, setInput] = useState(text);
   const [bgColor, setBgColor] = useState('white');
   const [toast, setToast] = useState({
     message: '',
@@ -129,6 +129,12 @@ const App = () => {
               }}
               variant="dark"
             >
+              <Button
+                onClick={() => setInput(readme)}
+                variant={isDark() ? 'secondary' : 'primary'}
+              >
+                Generate Template
+              </Button>
               <Button
                 onClick={openModal}
                 variant={isDark() ? 'secondary' : 'primary'}
