@@ -2,6 +2,8 @@ export const text = `# Welcome to ReadMeEditor!🗒️
 
 **ReadMeEditor** is a free, open source note taking / readme editing application, which helps you write and visualize your notes in real time. ReadMeEditor comes with an in-built **Code Editor** so you can seamlessly write your notes in [Markdown](https://www.markdownguide.org/basic-syntax/). ReadMeEditor is available as a **💻 desktop web** application and also comes with **🌓 Dark Mode**.
 
+[GitHub](https://github.com/NakshatraCodes/readme-editor) 
+
 ### How to use ReadMeEditor?
 
 - You can generate a starter template for a readme by clicking on the **\`Generate Template\`** button on the NavBar.
@@ -55,6 +57,7 @@ Made with ❤ by [NakshatraCodes](https://nakshatrasaxena.me)
 [Buy me a coffee](https://www.buymeacoffee.com/nakshatrasaxena)
 
 See a bug? - [File an issue](https://github.com/NakshatraCodes/readme-editor/issues)
+
 Open to contributions - [GitHub](https://github.com/NakshatraCodes/readme-editor) 
 `;
 
