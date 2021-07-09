@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import AceEditor from 'react-ace';
+import { useMediaQuery } from 'react-responsive';
 
 import 'ace-builds/src-noconflict/mode-markdown';
 import 'ace-builds/src-noconflict/theme-github';
@@ -20,12 +21,16 @@ import { postAPI } from './api';
 const App = () => {
   const [input, setInput] = useState(text);
   const [bgColor, setBgColor] = useState('white');
+  const [showModal, setShowModal] = useState(false);
   const [toast, setToast] = useState({
     message: '',
     errors: false,
     show: false,
   });
-  const [showModal, setShowModal] = useState(false);
+
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-device-width: 1224px)',
+  });
 
   const outputScroll = useRef(null);
   const editorScroll = useRef(null);
@@ -107,6 +112,32 @@ const App = () => {
         }
       });
   };
+
+  if (!isDesktopOrLaptop) {
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '20%',
+        }}
+      >
+        <Button
+          style={{
+            position: 'relative',
+            left: '-50%',
+            backgroundColor: '#007bff',
+            color: 'white',
+          }}
+          variant={'primary'}
+          disabled
+        >
+          Welcome to ReadMeEditor!🗒️ Unfortunately, we do not support small
+          screen devices. Please view from desktop or laptop
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <Container fluid style={{ maxHeight: '100%', backgroundColor: bgColor }}>
