@@ -23,6 +23,7 @@
   "homepage": "https://github.com/NakshatraCodes/readme-editor#readme",
   "dependencies": {
     "axios": "^0.21.1",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
   }
 }
