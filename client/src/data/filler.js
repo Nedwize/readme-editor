@@ -44,7 +44,7 @@ console.log('Hello World');
 
 Or Images: 
 
-![Tux, the Linux mascot](https://b.thumbs.redditmedia.com/YGpPBpmeQEzvAk8pMz1bYJgbe22izpwjp30_aceCQ5U.png)
+![Elon](https://b.thumbs.redditmedia.com/YGpPBpmeQEzvAk8pMz1bYJgbe22izpwjp30_aceCQ5U.png)
 
 This is a [link](https://nakshatrasaxena.me) and, finally, below is a horizontal rule:
 

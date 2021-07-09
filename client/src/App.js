@@ -177,7 +177,7 @@ const App = () => {
                 style={{ marginRight: '1rem' }}
                 variant={isDark() ? 'secondary' : 'primary'}
               >
-                Copy To Clipboard
+                📋 Copy
               </Button>
               <Button
                 onClick={() => {
