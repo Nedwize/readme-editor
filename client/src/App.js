@@ -139,7 +139,7 @@ const App = () => {
                 onClick={openModal}
                 variant={isDark() ? 'secondary' : 'primary'}
               >
-                Get from GitHub
+                Find from GitHub
               </Button>
               <Button
                 onClick={copyToClipboard}

@@ -46,6 +46,17 @@ app.post('/readme', async (req, res) => {
   }
 });
 
+if (process.env.NODE_ENV === 'production') {
+  // Serving Production assets
+  app.use(express.static('client/build'));
+
+  // If it doesnt recognize the route it will serve index.html
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
 app.listen(PORT, () => {
   console.log(`Server is running on PORT : ${PORT}`);
 });
