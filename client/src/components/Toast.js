@@ -1,7 +1,7 @@
 import React from 'react';
 import { Toast } from 'react-bootstrap';
 
-const ToastComponent = ({ show, handleClose, isDark, message }) => {
+const ToastComponent = ({ show, handleClose, bg, message }) => {
   return (
     <div
       style={{
@@ -17,7 +17,7 @@ const ToastComponent = ({ show, handleClose, isDark, message }) => {
           right: '-50%',
           color: 'white',
         }}
-        className={isDark() ? 'bg-secondary' : 'bg-primary'}
+        className={bg}
         onClose={handleClose}
         show={show}
         delay={1000}

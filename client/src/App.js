@@ -20,7 +20,11 @@ import { postAPI } from './api';
 const App = () => {
   const [input, setInput] = useState(FillerText);
   const [bgColor, setBgColor] = useState('white');
-  const [showToast, setShowToast] = useState(false);
+  const [toast, setToast] = useState({
+    message: '',
+    errors: false,
+    show: false,
+  });
   const [showModal, setShowModal] = useState(false);
 
   const outputScroll = useRef(null);
@@ -76,17 +80,32 @@ const App = () => {
 
   const copyToClipboard = () => {
     copy(input);
-    setShowToast(true);
+    setToast({ show: true, message: 'Copied to Clipboard', errors: false });
   };
 
   const openModal = () => {
     setShowModal(true);
   };
 
+  const showToast = (message, errors) => {
+    setToast({ show: true, message, errors });
+  };
+
   const handleFormSubmit = (values) => {
-    postAPI(values).then((res) => {
-      console.log(res.data);
-    });
+    postAPI(values)
+      .then((res) => {
+        if (res.data.data) {
+          showToast(`ReadMe Fetched`, false);
+          setInput(res.data.data);
+        } else {
+          showToast(`Couldn't fetch data`, true);
+        }
+      })
+      .catch((err) => {
+        if (err) {
+          showToast(`Couldn't fetch data`, true);
+        }
+      });
   };
 
   return (
@@ -180,10 +199,12 @@ const App = () => {
         </React.Fragment>
       </Row>
       <ToastComponent
-        show={showToast}
-        handleClose={() => setShowToast(false)}
-        isDark={isDark}
-        message={'Copied to Clipboard!'}
+        show={toast.show}
+        handleClose={() => setToast({ ...toast, show: false })}
+        bg={
+          toast.errors ? 'bg-danger' : isDark() ? 'bg-secondary' : 'bg-primary'
+        }
+        message={toast.message}
       />
       <ModalComponent
         show={showModal}

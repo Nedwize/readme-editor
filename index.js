@@ -20,20 +20,30 @@ app.get('/', (req, res) => {
 });
 
 app.post('/readme', async (req, res) => {
-  const { username, repository, branch } = req.body;
+  let { username, repository, branch } = req.body;
   if (!username || !repository) {
     return res.json({
       success: false,
       message: 'Username or Repo not defined',
     });
   }
-  let response = await axios.get(getURL(username, repository, branch));
+  if (!branch) {
+    branch = 'master';
+  }
 
-  res.json({
-    success: true,
-    message: 'OK',
-    data: response.data,
-  });
+  try {
+    let response = await axios.get(getURL(username, repository, branch));
+    return res.json({
+      success: true,
+      message: 'OK',
+      data: response.data,
+    });
+  } catch (err) {
+    return res.json({
+      success: false,
+      message: 'Couldnt fetch data',
+    });
+  }
 });
 
 app.listen(PORT, () => {
