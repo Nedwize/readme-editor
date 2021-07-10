@@ -5,7 +5,7 @@ import { atomDark as Theme } from 'react-syntax-highlighter/dist/esm/styles/pris
 
 class CodeBlock extends PureComponent {
   static propTypes = {
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
     language: PropTypes.string,
   };
 
@@ -17,7 +17,7 @@ class CodeBlock extends PureComponent {
     const { language, value } = this.props;
     return (
       <SyntaxHighlighter language={language} style={Theme}>
-        {value}
+        {value ? value : ''}
       </SyntaxHighlighter>
     );
   }
