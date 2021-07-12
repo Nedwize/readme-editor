@@ -71,3 +71,7 @@
 .form-control:focus {
   box-shadow: none;
 }
+
+.line-break {
+  white-space: pre-wrap;
+}

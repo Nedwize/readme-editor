@@ -206,7 +206,10 @@ const App = () => {
               mode="markdown"
               theme={isDark() ? 'monokai' : 'github'}
               name="blah2"
-              onChange={(e) => setInput(e)}
+              onChange={(e) => {
+                console.log(e);
+                setInput(e);
+              }}
               fontSize={16}
               showPrintMargin={true}
               showGutter={true}
@@ -231,7 +234,11 @@ const App = () => {
             ref={outputScroll}
             onScroll={handleOutputScroll}
           >
-            <ReactMarkdown source={input} renderers={{ code: CodeBlock }} />
+            <ReactMarkdown
+              source={input.toString()}
+              renderers={{ code: CodeBlock }}
+              className="line-break"
+            />
           </Col>
         </React.Fragment>
       </Row>
